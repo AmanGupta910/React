@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import New from './Aman.jsx'
 
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
 
   return (
     <>
-     
+       <New/>
      <h1>Hello byVite |Aman </h1>
 
      
