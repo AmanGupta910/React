@@ -1,0 +1,27 @@
+
+@import "tailwindcss";
+.btn{
+
+background: rgb(3, 220, 240);
+text-align: center;
+margin: 2px;
+padding: 2px ;
+
+
+
+
+}
+
+.Bg{
+background: rgb(225, 118, 25);
+}
+
+body{
+  background-color: aqua;
+}
+
+button{
+  text-align: center;
+  margin: auto;
+}
+
