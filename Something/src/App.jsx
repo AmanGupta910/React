@@ -3,50 +3,53 @@ import InputBox from "./components/InputBox";
 import useCurrencyInfo from "./hooks/useCurrencyinfo";
 
 function App() {
- 
-  const [amount, setAmount] = useState(0);
-
-  
-  const [from, setFrom] = useState("usd");
-  const [to, setTo] = useState("inr");
-
+  const [amount, setAmount] = useState(1);
+  const [from, setFrom] = useState("USD");
+  const [to, setTo] = useState("INR");
   const [convertedAmount, setConvertedAmount] = useState(0);
 
-  
-  const currencyInfo = useCurrencyInfo(from);
+  // Fetch currency data
+  const currencyInfo = useCurrencyInfo(from.toLowerCase());
 
-  
+  // Dropdown options
   const options = Object.keys(currencyInfo || {});
 
-  
+  // Swap currencies
   const swap = () => {
-    setFrom(to);
-    setTo(from);
+    const prevFrom = from;
 
-    setConvertedAmount(amount);
+    setFrom(to);
+    setTo(prevFrom);
+
     setAmount(convertedAmount);
+    setConvertedAmount(amount);
   };
 
- 
+  // Convert currency
   const convert = () => {
-    setConvertedAmount(amount * currencyInfo[to]);
+    if (currencyInfo && currencyInfo[to]) {
+      setConvertedAmount(amount * currencyInfo[to]);
+    }
   };
 
   return (
-    <div className="w-full h-screen flex flex-wrap justify-center items-center bg-gray-800">
-      <div className="w-full">
-        <div className="w-full max-w-md mx-auto border border-gray-600 rounded-lg p-5 backdrop-blur-sm bg-white/30">
-          
+    <div
+      className="w-full h-screen flex justify-center items-center bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage:
+          "url('https://images.pexels.com/photos/6353321/pexels-photo-6353321.jpeg')",
+      }}
+    >
+      <div className="w-full max-w-md mx-auto">
+        <div className="border border-gray-300 rounded-xl p-5 backdrop-blur-md bg-white/30 shadow-lg">
           <form
             onSubmit={(e) => {
               e.preventDefault();
-
-              // FIX: Actually call convert()
               convert();
             }}
           >
-            {/* FROM BOX */}
-            <div className="w-full mb-1">
+            {/* FROM */}
+            <div className="mb-2">
               <InputBox
                 label="From"
                 amount={amount}
@@ -58,37 +61,36 @@ function App() {
             </div>
 
             {/* SWAP BUTTON */}
-            <div className="relative w-full h-0.5">
+            <div className="relative h-2">
               <button
                 type="button"
                 onClick={swap}
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-1 rounded-md border border-white"
               >
                 Swap
               </button>
             </div>
 
-            {/* TO BOX */}
-            <div className="w-full mt-1 mb-4">
+            {/* TO */}
+            <div className="mt-4 mb-4">
               <InputBox
                 label="To"
                 amount={convertedAmount}
                 currencyOptions={options}
                 selectCurrency={to}
-                amountDisable
                 onCurrencyChange={setTo}
+                amountDisable
               />
             </div>
 
             {/* CONVERT BUTTON */}
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition"
             >
-              Convert {from.toUpperCase()} to {to.toUpperCase()}
+              Convert {from} to {to}
             </button>
           </form>
-
         </div>
       </div>
     </div>
