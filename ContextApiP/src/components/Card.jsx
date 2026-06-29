@@ -2,12 +2,12 @@ export default function Card() {
     return (
         <div className="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="/">
-                <img className="p-8 rounded-t-lg" src="https://images.pexels.com/photos/18264716/pexels-photo-18264716/free-photo-of-man-people-laptop-internet.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="product_image1" />
+                <img className="p-8 rounded-t-lg" src="https://up.yimg.com/ib/th/id/OIP.Dgo2sfbgzJRXQUHwNxSfVwHaE8?pid=Api&rs=1&c=1&qlt=95&w=157&h=105" alt="product_image1" />
             </a>
             <div className="px-5 pb-5">
                 <a href="/">
                     <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                        Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport
+                        Apple Lapy
                     </h5>
                 </a>
                 <div className="flex items-center mt-2.5 mb-5">
